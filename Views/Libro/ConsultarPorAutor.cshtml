@@ -1,0 +1,54 @@
+@model IEnumerable<Libro>
+@{
+    ViewData["Title"] = "Consultar libros por autor";
+}
+
+<h2 class="mb-3">Consultar libros por autor</h2>
+
+<form asp-action="ConsultarPorAutor" method="get" class="row g-2 mb-3">
+    <div class="col-md-6">
+        <input type="text" name="autor" value="@ViewBag.Autor" maxlength="100"
+               class="form-control" placeholder="Escriba el nombre o parte del nombre del autor" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+        <a asp-action="ConsultarPorAutor" class="btn btn-outline-secondary">Limpiar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+    </div>
+</form>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-warning">@ViewBag.Error</div>
+}
+
+@if (Model.Any())
+{
+    <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre del libro</th>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>ISDN</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.NombreLibro</td>
+                    <td>@item.Autor</td>
+                    <td>@item.NombreEditorial</td>
+                    <td>@item.ISDN</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

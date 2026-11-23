@@ -1,0 +1,44 @@
+@model Libro
+@{
+    ViewData["Title"] = "Registrar libro";
+}
+
+<h2 class="mb-3">Registrar libro</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Crear" method="post">
+            <div class="mb-3">
+                <label asp-for="NombreLibro" class="form-label"></label>
+                <input asp-for="NombreLibro" class="form-control" />
+                <span asp-validation-for="NombreLibro" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Autor" class="form-label"></label>
+                <input asp-for="Autor" class="form-control" />
+                <span asp-validation-for="Autor" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NombreEditorial" class="form-label"></label>
+                <input asp-for="NombreEditorial" class="form-control" />
+                <span asp-validation-for="NombreEditorial" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ISDN" class="form-label"></label>
+                <input asp-for="ISDN" class="form-control" />
+                <span asp-validation-for="ISDN" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success">Registrar</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
